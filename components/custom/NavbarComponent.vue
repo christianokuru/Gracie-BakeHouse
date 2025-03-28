@@ -1,8 +1,18 @@
 <script setup lang="ts">
+
 import LogoComponent from '@/components/custom/LogoComponent.vue';
-import cart from '@/assets/icons/cart.svg'
-import love from '@/assets/icons/love.svg'
-import profile from '@/assets/icons/profile.svg'
+import AddToCartIconComponent from '@/components/custom/AddToCartIconComponent.vue';
+import WishlistIconComponent from '@/components/custom/WishlistIconComponent.vue';
+import ProfileIconComponent from '@/components/custom/ProfileIconComponent.vue';
+
+
+
+
+
+
+const openProfile = () => {
+    console.log('open profile')
+}
 </script>
 
 <template>
@@ -14,10 +24,16 @@ import profile from '@/assets/icons/profile.svg'
         <div>
             <logo-component />
         </div>
-        <div class="flex items-center gap-x-3 hover:cursor-pointer">
-            <nuxt-img :src="cart" width="24" height="24" preload/>
-            <nuxt-img :src="love" width="24" height="24" preload/>
-            <nuxt-img :src="profile" width="24" height="24" preload/>
+        <div class="flex items-center gap-x-5 hover:cursor-pointer" >
+           <div>
+            <add-to-cart-icon-component />
+           </div>
+            <div>
+               <wishlist-icon-component /> 
+            </div>
+            <div>
+                <profile-icon-component />
+            </div>
             
         </div>
     </div>
