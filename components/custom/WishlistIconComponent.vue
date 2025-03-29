@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Badge } from "@/components/ui/badge";
-import love from '@/assets/icons/love.svg'
-import { ref } from 'vue'
+import love from "@/assets/icons/love.svg";
+import { ref } from "vue";
 
-const wishlistCount = ref<number>(2)
+const wishlistCount = ref<number>(2);
 
 const openWishlist = () => {
   console.log("open cart");

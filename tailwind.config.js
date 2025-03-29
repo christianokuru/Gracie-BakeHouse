@@ -11,6 +11,10 @@ export default {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			Mont: "Montserrat, sans-serif",
+			poppings: "Poppins, sans-serif"
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

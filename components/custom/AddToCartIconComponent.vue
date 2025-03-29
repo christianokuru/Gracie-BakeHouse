@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Badge } from "@/components/ui/badge";
 import cart from "@/assets/icons/cart.svg";
-import { ref } from 'vue'
+import { ref } from "vue";
 
 const cartCount = ref<number>(12);
 
