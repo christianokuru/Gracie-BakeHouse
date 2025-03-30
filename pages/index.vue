@@ -1,13 +1,23 @@
-<script setup lang="ts">
-import { useCounterStore } from "@/stores/counter.js"; // Adjust the path as needed
+<script setup>
+import { useCartStore } from "@/stores/cart.js";
+import ProductCardComponent from "@/components/custom/ProductCardComponent.vue";
 
-const counterStore = useCounterStore(); // Get the store instance
+const cartStore = useCartStore();
 
-// 
+// Mock data for products
+const products = [
+  { id: 1, image: "/images/banana-bread/2.jpg", name: "Product 1", price: 29.99 },
+  { id: 2, image: "/images/banana-bread/1.jpg", name: "Product 2", price: 39.99 },
+  { id: 3, image: "/images/banana-bread/1.jpg", name: "Product 3", price: 49.99 },
+];
 
-// Destructure state and actions directly from the store
-// const { counter, increment, decrement } = counterStore;
+// Function to handle add to cart
+const addToCart = (product) => {
+  console.log(product);
+  cartStore.addToCart(product);
+};
 
+// SEO Metadata
 useSeoMeta({
   title: "Gracie's Bakehouse",
   description: "Get your fresh breads and Pastries",
@@ -21,6 +31,7 @@ useSeoMeta({
   twitterCard: "summary",
 });
 
+// Head Metadata
 useHead({
   htmlAttrs: {
     lang: "en",
@@ -42,17 +53,17 @@ useHead({
       Welcome to Gracie's Bakehouse, where we specialize in making your bread
       and pastries fresh and delicious.
     </p>
-    <!-- <img src="/images/cakes/1.jpgg" alt="Gracie's Bakehouse bread" /> -->
 
-    <h2>Our Counter</h2>
-    <div class="flex items-center space-x-4">
-      <p>Counter: {{ counterStore.counter }}</p>
-      <button class="p-2 bg-stone-500 text-white rounded-lg hover:bg-stone-400" @click="counterStore.increment">
-        Increment
-      </button>
-      <button class="p-2 bg-stone-500 text-white rounded-lg hover:bg-stone-400" @click="counterStore.decrement">
-        Decrement
-      </button>
+    <h1 class="text-2xl font-poppins">Our Products</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
+      <ProductCardComponent
+        v-for="product in products"
+        :key="product.id"
+        :image="product.image"
+        :name="product.name"
+        :price="product.price"
+        :onAddToCart="() => addToCart(product)"
+      />
     </div>
   </div>
 </template>
