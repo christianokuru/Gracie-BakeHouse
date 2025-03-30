@@ -3,8 +3,10 @@ import { useCounterStore } from "@/stores/counter.js"; // Adjust the path as nee
 
 const counterStore = useCounterStore(); // Get the store instance
 
+// 
+
 // Destructure state and actions directly from the store
-const { counter, increment, decrement } = counterStore;
+// const { counter, increment, decrement } = counterStore;
 
 useSeoMeta({
   title: "Gracie's Bakehouse",
@@ -44,11 +46,11 @@ useHead({
 
     <h2>Our Counter</h2>
     <div class="flex items-center space-x-4">
-      <p>Counter: {{ counter }}</p>
-      <button class="p-2 bg-stone-500 text-white rounded-lg hover:bg-stone-400" @click="increment">
+      <p>Counter: {{ counterStore.counter }}</p>
+      <button class="p-2 bg-stone-500 text-white rounded-lg hover:bg-stone-400" @click="counterStore.increment">
         Increment
       </button>
-      <button class="p-2 bg-stone-500 text-white rounded-lg hover:bg-stone-400" @click="decrement">
+      <button class="p-2 bg-stone-500 text-white rounded-lg hover:bg-stone-400" @click="counterStore.decrement">
         Decrement
       </button>
     </div>
