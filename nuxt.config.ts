@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/google-fonts',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
   ],
   googleFonts: {
     families: {
