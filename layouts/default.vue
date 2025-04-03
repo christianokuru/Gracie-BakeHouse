@@ -1,16 +1,19 @@
 <script setup>
-// import Toaster from '@/components/ui/toast/Toaster.vue'
-
-// import {ToastProvider} from '~/components/ui/toast/ToastProvider.vue';
 import NavbarComponent from "@/components/custom/NavbarComponent.vue";
 import FooterComponent from "@/components/custom/FooterComponent.vue";
+
+const { progress, isLoading, error, start, finish, clear } = useLoadingIndicator({
+    throttle: 900,
+    duration: 1000
+})
 </script>
 
 <template>
-  <main class="max-w-[1120px] mx-auto">
+  <NuxtLoadingIndicator color="orange" height=2 />
+  <div>
     <navbar-component />
     <nuxt-page />
     <footer-component />
-  </main>
+  </div>
 </template>
 <style lang="scss" scoped></style>

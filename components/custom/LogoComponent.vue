@@ -2,7 +2,7 @@
 
 </script>
 <template> 
-    <div class="inline-block">
-        <nuxt-img src="/images/sky.svg" fit="inside" format="webp" width="50" height="50" quality="100"  preload/>
+    <div class="inline-block border border-red-500">
+        <nuxt-img src="/images/logo.svg" fit="inside" format="webp" width="200" height="200" quality="100"  preload/>
     </div>
 </template>
