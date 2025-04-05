@@ -16,16 +16,16 @@ const performSearch = (query: string) => {
 
 <template>
   <div
-    class="absolute z-10 flex items-center justify-between w-full px-[60px] backdrop-blur-lg"
+    class=" z-10 flex items-center justify-between w-full px-[60px] backdrop-blur-lg"
   >
     <!-- <div class="flex items-center gap-x-2">
       <Icon name="humbleicons:phone-call" style="color: brown" size="25px" />
       <p class="font-poppings text-primary-foreground">+234 707 720 7559</p>
     </div> -->
     <div>
-      <logo-component />
+      <!-- <logo-component /> -->
     </div>
-    <div class="flex flex-col items-center gap-4 p-10">
+    <div class="flex flex-col items-center gap-4 my-3">
       <search-component
         v-model="searchQuery"
         placeholder="Search for items..."

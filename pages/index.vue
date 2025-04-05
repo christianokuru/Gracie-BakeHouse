@@ -5,6 +5,13 @@ import HeroSectionComponent from "~/components/custom/HeroSectionComponent.vue";
 
 const cartStore = useCartStore();
 
+async function submit() {
+    const { body } = await $fetch('/api/users/submitcreds', {
+        method: 'post',
+        body: {text: 123}
+    })
+}
+
 // Mock data for products
 const products = [
   {
@@ -79,6 +86,9 @@ useHead({
           />
         </div>
       </div>
+      <div>
+        <button class="border p-4 bg-black text-white rounded-e-md" @click="submit">click me</button>
+    </div>
     </main>
   </div>
 </template>

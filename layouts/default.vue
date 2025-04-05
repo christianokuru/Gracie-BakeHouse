@@ -9,7 +9,7 @@ const { progress, isLoading, error, start, finish, clear } = useLoadingIndicator
 </script>
 
 <template>
-  <NuxtLoadingIndicator color="orange" height=2 />
+  <NuxtLoadingIndicator color="orange" />
   <div>
     <navbar-component />
     <nuxt-page />

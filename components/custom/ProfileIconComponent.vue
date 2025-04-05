@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import profile from "@/assets/icons/profile.svg";
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const openProfile = () => {
-  console.log("open profile");
+  router.push({ name: 'profile' })
 };
 </script>
 

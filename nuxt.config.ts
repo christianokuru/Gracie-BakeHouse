@@ -23,4 +23,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    secretKey: process.env.SECRET_API_KEY
+  }
 })
