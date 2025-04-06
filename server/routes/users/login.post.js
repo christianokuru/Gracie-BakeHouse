@@ -1,55 +1,52 @@
-// import mongoose from 'mongoose'
+import User from '@/server/models/User' // Import the already defined model
 
-// // Optional: define a sample user model (if you haven't yet)
-// const UserSchema = new mongoose.Schema({
-//   email: String,
-//   password: String, // Note: this should be hashed in real apps!
-// })
+export default defineEventHandler(async (event) => {
+  try {
+    // 1. Read the body of the request
+    const body = await readBody(event)
 
-// const User = mongoose.models.User || mongoose.model('User', UserSchema)
+    const { email, password } = body
 
-// export default defineEventHandler(async (event) => {
-//   try {
-//     const body = await readBody(event)
+    // 2. Check if email and password are provided
+    if (!email || !password) {
+      return {
+        error: true,
+        message: 'Email and password are required',
+      }
+    }
 
-//     const { email, password } = body
+    // 3. Find the user by email
+    const user = await User.findOne({ email })
 
-//     if (!email || !password) {
-//       return {
-//         error: true,
-//         message: 'Email and password are required',
-//       }
-//     }
+    if (!user) {
+      return {
+        error: true,
+        message: 'No user with this email',
+      }
+    }
 
-//     // 💡 In real life, you'd hash & compare passwords securely.
-//     const user = await User.findOne({ email })
+    // 4. Check if the password matches (you should hash and compare in real life)
+    // Here we are directly comparing the password, which you should NOT do in production.
+    if (user.password !== password) {
+      return {
+        error: true,
+        message: 'Incorrect password',
+      }
+    }
 
-//     if (!user) {
-//       return {
-//         error: true,
-//         message: 'No user with this email',
-//       }
-//     }
-
-//     if (user.password !== password) {
-//       return {
-//         error: true,
-//         message: 'Incorrect password',
-//       }
-//     }
-
-//     // You'd return a token here, but for now:
-//     return {
-//       success: true,
-//       message: 'Login successful!',
-//       user: {
-//         email: user.email,
-//       },
-//     }
-//   } catch (err) {
-//     return {
-//       error: true,
-//       message: err.message,
-//     }
-//   }
-// })
+    // 5. Respond with a success message (return a token in a real app)
+    return {
+      success: true,
+      message: 'Login successful!',
+      user: {
+        email: user.email,
+      },
+    }
+  } catch (err) {
+    // 6. Handle any errors that happen during the process
+    return {
+      error: true,
+      message: err.message,
+    }
+  }
+})

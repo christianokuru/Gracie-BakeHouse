@@ -1,7 +1,5 @@
 <script setup>
 import { reactive } from 'vue'
-import { useRouter }  from 'vue-router'
-import heroImag from '@/public/images/cakes/1.jpg'
 
 const formData = reactive({
   email: '',
