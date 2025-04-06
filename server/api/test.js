@@ -1,8 +1,23 @@
-export default defineEventHandler(() => {
-    return{
-        message: `hello backend`
+import mongoose from 'mongoose'
+
+export default defineEventHandler(async () => {
+  // Optional safety check to avoid crash if not connected
+  if (mongoose.connection.readyState === 0) {
+    return {
+      error: true,
+      message: 'MongoDB is not connected yet.',
     }
+  }
+
+  // List all collections in the connected DB
+  const collections = await mongoose.connection.db.listCollections().toArray()
+
+  return {
+    message: '✅ Mongo is working fine!',
+    collections: collections.map((col) => col.name),
+  }
 })
+
 
 // The 'event' contains information about the request if you like
 // use $fetch to fetch data on the server and not useFetch.. useFetch is for the front end
