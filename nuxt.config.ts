@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     secretKey: process.env.SECRET_API_KEY,
-    MONGO_URI: process.env.MONGO_URI
+    MONGO_URI: process.env.MONGO_URI,
+    JWT_SECRET: process.env.JWT_SECRET
   }
 })
