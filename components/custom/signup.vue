@@ -3,12 +3,14 @@ import { reactive } from "vue";
 
 const formData = reactive({
   email: "",
+  username: "",
   password: "",
   confirmPassword: "",
 });
 
 const errors = reactive({
   email: "",
+  username: "",
   password: "",
   confirmPassword: "",
 });
@@ -18,6 +20,7 @@ const validateForm = () => {
 
   // Clear previous errors
   errors.email = "";
+  errors.username = "";
   errors.password = "";
   errors.confirmPassword = "";
 
@@ -28,6 +31,12 @@ const validateForm = () => {
     isValid = false;
   } else if (!emailPattern.test(formData.email)) {
     errors.email = "Please enter a valid email address";
+    isValid = false;
+  }
+
+  // Username validation
+  if (!formData.username) {
+    errors.username = "Username is actually required";
     isValid = false;
   }
 
@@ -57,7 +66,7 @@ const onSubmit = async (event) => {
 
     // Send form data to backend
     try {
-      const response = await $fetch("/api/users/signup", {
+      const response = await $fetch("/users/signup", {
         method: "POST",
         body: formData,
       });
@@ -75,7 +84,11 @@ const onSubmit = async (event) => {
 </script>
 
 <template>
-  <h1 class="text-3xl font-poppings text-[#391603] font-poppins text-center my-7">Create an Account</h1>
+  <h1
+    class="text-3xl font-poppings text-[#391603] font-poppins text-center my-7"
+  >
+    Create an Account
+  </h1>
   <form @submit="onSubmit" class="space-y-6">
     <!-- Email Field -->
     <div class="form-item">
@@ -88,6 +101,21 @@ const onSubmit = async (event) => {
         class="w-full p-2 border rounded-md"
       />
       <p v-if="errors.email" class="text-red-500 text-sm">{{ errors.email }}</p>
+    </div>
+
+    <!-- Username Field -->
+    <div class="form-item">
+      <label for="email" class="text-[#391603]">Username</label>
+      <input
+        v-model="formData.username"
+        type="text"
+        id="username"
+        placeholder="Excess_pink_bananas"
+        class="w-full p-2 border rounded-md"
+      />
+      <p v-if="errors.username" class="text-red-500 text-sm">
+        {{ errors.username }}
+      </p>
     </div>
 
     <!-- Password Field -->
