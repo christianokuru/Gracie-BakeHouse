@@ -22,7 +22,6 @@ export default defineEventHandler(async (event) => {
 
     // 3. Find the user by email
     const user = await User.findOne({ email })
-    console.log(user.password)
     
     if (!user) {
       return {
