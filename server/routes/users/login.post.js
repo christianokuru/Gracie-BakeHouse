@@ -1,4 +1,5 @@
-import User from '@/server/models/User' // Import the already defined model
+import User from '@/server/models/User' 
+import bcrypt from 'bcryptjs'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -25,9 +26,9 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    // 4. Check if the password matches (you should hash and compare in real life)
-    // Here we are directly comparing the password, which you should NOT do in production.
-    if (user.password !== password) {
+    // 4. compare and check if the password matches the hash in the database
+    const isPasswordMatch = await bcrypt.compare(password, user.password)
+    if (!isPasswordMatch) {
       return {
         error: true,
         message: 'Incorrect password',
